@@ -1,6 +1,6 @@
 ---
 title: "Climate Change Module"
-author: 'Add name'
+author: 'Charlie Keglovitz'
 format:
   html:
     embed-resources: true
@@ -45,13 +45,15 @@ Describe the overall trend in the CO2 data.
 
 **Answer 1:**
 
+The general trend over the entire time period is a steady increase in CO2 concentration. The slope of the increase seems to have increased slightly since 2000 but it seems relatively linear in growth.
+
 **Question 2:**
 
 How does CO2 vary within a year?  What month is it at max?  Min?  What might explain this sub-annual pattern? (you will need to write code and make a plot to answer this question)
 
 **Answer 2:**
 
-
+The CO2 data oscillates every year from high in the winter to lower in the summer. It is at its max in May and very close to the peak in June. CO2 is lowest during October. I think trees photosynthesizing carbon dioxide into oxygen more during the spring/summer would lower CO2 levels and they would subsequently rise as tress die.
 
 ## Global Temperature Data
 
