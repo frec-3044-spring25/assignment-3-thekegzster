@@ -73,6 +73,11 @@ Describe the data set to the best of your ability, given the documentation provi
 
 **Answer 3:**
 
+1) The data is the Global Land-Ocean Temperature Index from NASA, specifically the Goddard Institute for Space Studies.
+
+2) The class of each column is a double. year, month, and days are measured in years, months, and days. Decimal date is the amount of years that compiles the year and how far along it is in the year using months. Monthly average and deseasonalized have the units of co2 parts per million. sd_days is a measure of standard deviation and unc_month_mean is a measure of mean.
+
+3) Global temperature is the standard temperature while global temperature anomaly is how much warmer or colder a year/month was compared to the long running average or the temperature that it was expected to be.
 
 **Question 4:**
 
@@ -81,6 +86,13 @@ Construct the necessary R code to import and prepare for plotting the following 
 You'll need to determine the file's delimiter and any comments or skips. You will also need to be sure that you have column names. You will not directly use the code above to read the CO2 data, but that code provides helpful tips for reading the data.
 
 **Answer 4:**
+
+```{r}
+
+
+
+```
+
 
 **Question 5:**
 
