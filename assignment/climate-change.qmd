@@ -130,7 +130,7 @@ Use a search engine (e.g., Google) or a chat LLM to find out how to calculate a 
 library(zoo)
 
 tempIndex <- tempIndex |> 
-  mutate(rolling_avg = rollmean(No_Smoothing, k = 3, fill = NA, align = "center"))
+  mutate(Three_year_rolling_avg = rollmean(No_Smoothing, k = 3, fill = NA, align = "center"))
 
 
 ```
@@ -142,6 +142,16 @@ I used ChatGPT to answer this question. I told it that I had a dataframe and wan
 - Create a data frame from the annual temperature anomaly data (from Question 4) with three new columns: 5-year running averages, 10-year running averages, and 20-year running averages.
 
 **Answer 7:**
+1) The meaning of a 5-year average is the average over only the last 5 years and not considering anything before that. An annual average only takes into account the last year.
+2) 
+```{r}
+
+rollingAvg_tempIndex <- tempIndex |> 
+  mutate(Five_year_rolling_avg = rollmean(No_Smoothing, k = 5, fill = NA, align = "center")) |> 
+  mutate(Ten_year_rolling_avg = rollmean(No_Smoothing, k = 10, fill = NA, align = "center")) |> 
+  mutate(Twenty_year_rolling_avg = rollmean(No_Smoothing, k = 20, fill = NA, align = "center"))
+
+```
 
 **Question 8:**
 
@@ -149,11 +159,27 @@ Plot the different averages on the *same plot* and describe what differences you
 
 **Answer 8:**
 
+```{r}
+
+rollingAvg_tempIndex |> 
+  ggplot(aes(x = Year)) +
+  geom_line(aes(y = No_Smoothing, color = "Single-Year")) +
+  geom_line(aes(y = Five_year_rolling_avg, color = "5-Year Avg")) +
+  geom_line(aes(y = Ten_year_rolling_avg, color = "10-Year Avg")) +
+  geom_line(aes(y = Twenty_year_rolling_avg, color = "20-Year Avg"))
+
+
+```
+
+I see that the 20 year average is more resistant to sharp fluctuations year to year. The longer time intervals describe the overall trend while the shorter intervals are more vulnerable to fluctuations in the data on a yearly basis.
+
 **Question 9:**
 
 By examining the data here, what evidence do you find or not find for such a pause? 
 
 **Answer 9:**
+
+I do not find evidence of a pause since the five, ten, and twenty year averages continued to increase at a steady rate through 1998 and the early 200s. While the single year averages did have many spikes and drops that didn't seem to lead to a large overall increase, the trend of increasing temperatures since the late 1960s continued throughout that time period.
 
 ## Longer term trends in CO2 Records
 
