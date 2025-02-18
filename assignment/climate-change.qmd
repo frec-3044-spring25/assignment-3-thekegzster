@@ -220,9 +220,28 @@ Your answer to Question 10 is going to be a mix of code chunks and text that you
 - Describe your conclusions to the question "How do recent atmospheric CO2 levels compare to historical levels?" using your plot as supporting evidence.   
 
 **Answer 10:**
+1) The columns of this data set are depth of the ice, age of the ice, age of the air, and co2 in the ice. The units of depth is in meters, units of age of ice is in years, age of air is in years, and co2 concentration is in co2 parts per million. These numbers are coming from ice samples from the arctic to measure historical co2 levels trapped in the ice. These values do not change considerably over time so it is a good measure of historical co2 levels.
 
+2) After doing some research, the temporal resolution of the ice is clearest at the top where the ice is newer but gets less clear as the ice gets deeper. Because of the method of measuring the data, we can not get precise year to year co2 measurements from prehistoric times, but we can get a general sense of how atmospheric co2 was changing over periods of hundreds to thousands of years.
+
+3) 
+```{r}
+library(readr)
+
+iceCore <- read_table2("vostok.icecore.co2", 
+                        col_names = c("Depth_m", "Age_Ice_BP", "Age_Air_BP", "CO2_ppmv"),
+                        col_types = "didd",
+                        comment = "*")
+iceCore <- na.omit(iceCore)
+summary(iceCore)
+str(iceCore)
+```
+
+4) 
 ```{r}
 
+iceCore <- iceCore |> 
+  arrange(desc(Age_Ice_BP))
 
 ```
 
