@@ -214,7 +214,7 @@ Your answer to Question 10 is going to be a mix of code chunks and text that you
 - What is the temporal resolution of the data? 
 - Read in and prepare data for analysis.   
 - Reverse the ordering to create a chronological record so that each measurement is associcated with calender year.
-- Plot data.  
+- Plot data.
 - Combine this time series with the Mauna Loa data (the Warm-up exercise in this assignment).  You will use "bind_rows()".
 - Plot the combined data. (the most recent time period must be on the right side of the plot).        
 - Describe your conclusions to the question "How do recent atmospheric CO2 levels compare to historical levels?" using your plot as supporting evidence.   
@@ -244,6 +244,37 @@ iceCore <- iceCore |>
   arrange(desc(Age_Ice_BP))
 
 ```
+
+5) 
+```{r}
+
+iceCore |> 
+  ggplot(aes(x = Age_Ice_BP, y = CO2_ppmv)) + 
+  geom_line() + 
+  geom_point() +
+  scale_x_reverse() +
+  labs(x = "Age of Ice (Years)", y = "CO2 concentration (ppm)")
+
+```
+6)
+```{r}
+iceCore <- iceCore |> 
+  mutate(decimal_date = 2025 - Age_Ice_BP) |> 
+  mutate(monthly_average = CO2_ppmv)
+
+combined_df <- bind_rows(co2, iceCore)
+
+```
+
+7) 
+```{r}
+combined_df |> 
+  ggplot(aes(x = decimal_date, y = monthly_average)) + 
+  geom_line() + 
+  labs(x = "Year", y = "CO2 concentration (ppm)")
+
+```
+8) CO2 levels right now are higher than they have ever been in history. In prehistoric times, there were many peaks and valleys of co2 concentration, but they never reached as high as 300 ppm, let alone 400 ppm where levels are above now. This is a recent trend that does not follow the patterns of co2 concentration found in ice in the hundreds of thousands of years before human interference.
 
 # Render and committing
 
