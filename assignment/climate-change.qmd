@@ -89,7 +89,9 @@ You'll need to determine the file's delimiter and any comments or skips. You wil
 
 ```{r}
 
-
+tempIndex <- read_table("https://data.giss.nasa.gov/gistemp/graphs/graph_data/Global_Mean_Estimates_based_on_Land_and_Ocean_Data/graph.txt", 
+                  skip = 5,
+                  col_names = c("Year", "No_Smoothing", "Lowess(5)"))
 
 ```
 
@@ -99,6 +101,17 @@ You'll need to determine the file's delimiter and any comments or skips. You wil
 Plot the trend in global mean temperatures over time.  Describe what you see in the plot and how you interpret the patterns you observe.
 
 **Answer 5:**
+
+```{r}
+
+tempIndex |> 
+  ggplot(aes(x = Year, y = No_Smoothing)) +
+  geom_line() + 
+  geom_point()
+
+```
+In the plot I see that temperature levels fluctuated but did not rise greatly overall from 1880 to just before 1980. Afterwards there was still fluctuation year to year but an overall steady rise in temperature that has only increased more drastically as time went on. I interpret this result as temperature staying relatively stable as the world emmited fewer greenhouse gases but then steadily rising as we emmited more of these gases.
+
 
 ## Evaluating the evidence for a "Pause" in warming?
 
