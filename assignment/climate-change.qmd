@@ -125,6 +125,17 @@ Use a search engine (e.g., Google) or a chat LLM to find out how to calculate a 
 
 **Answer 6:**
 
+```{r}
+
+library(zoo)
+
+tempIndex <- tempIndex |> 
+  mutate(rolling_avg = rollmean(No_Smoothing, k = 3, fill = NA, align = "center"))
+
+
+```
+I used ChatGPT to answer this question. I told it that I had a dataframe and wanted to calculate the rolling average of one of the columns and put that data into a new column. It told me to mutate using the rollmean function and to align each rolling mean at the center which means the first and last points will be NA. I did not have to modify the answer it gave me much for it to work.
+
 **Question 7:**
 
 - What is the meaning of "5-year average" vs. "annual average"?
